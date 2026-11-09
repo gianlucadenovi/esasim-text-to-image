@@ -98,7 +98,7 @@ An [EsaSim](https://esacode.com/) project of the workspace Gianluca De Novi's wo
 
 ### Blueprints in this repository
 
-- [1 · One prompt, any number of images](blueprints/1-one-prompt-any-number-of-images.json) · 5 blocks · version 4
+- [1 · One prompt, any number of images](blueprints/1-one-prompt-any-number-of-images.json) · 5 blocks · version 5
 - [2 · One prompt, ten styles](blueprints/2-one-prompt-ten-styles.json) · 4 blocks
 - [3 · Small to large: four models](blueprints/3-small-to-large-four-models.json) · 12 blocks
 
