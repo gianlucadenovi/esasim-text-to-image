@@ -20,7 +20,7 @@ The model is downloaded from Hugging Face the first time, only the parts the pip
 
 ## Flows
 
-- **1 · One prompt, any number of images**: Segmind Vega makes 20 images of a rover in a Martian canyon (seeds 1 to 20; set **Images** to any number). The view shows each one live, then the gallery, the seconds each took and a table of seeds and prompts.
+- **1 · One prompt, any number of images**: Segmind Vega makes 20 images of a rover in a Martian canyon (seeds 1 to 20; set **Images** to any number). The view shows them in a grid as they are made, the seconds each took and a table of seeds and prompts.
 - **2 · One prompt, ten styles**: the same scene in ten styles (sunrise, night under the Milky Way, dust storm, seen from orbit, watercolour, pencil sketch, retro illustration…), two seeds each, with **Variations** added to the prompt in turn.
 - **3 · Small to large: four models**: the same prompt and seeds on Vega RT, Vega, SSD-1B and SDXL 1.0 (0.7B to 3.5B parameters): their images side by side, and a chart of the seconds per image of each.
 
@@ -50,7 +50,7 @@ The model is downloaded from Hugging Face the first time, only the parts the pip
 - Disk space for the models, downloaded the first time: Vega 3.3 GB (Vega RT adds 0.24 GB), SSD-1B about 4.5 GB, SDXL 1.0 6.9 GB, FLUX.1 schnell 34 GB. Flow 3 downloads the first four (about 15 GB). The block checks the free space first.
 - Internet access the first time.
 - Python packages, installed by the worker the first time: `torch` (with CUDA on NVIDIA machines), `diffusers`, `transformers`, `accelerate`, `safetensors`, `peft`, `huggingface_hub`, `pillow`. On a Tenstorrent machine, TT-XLA as above.
-- No account or key, except for FLUX.1 schnell: sign in on Hugging Face, accept its conditions on its page, make a token (Settings › Access tokens, read) and paste it in the block's **Hugging Face token**.
+- No account or key, except for FLUX.1 schnell: sign in on Hugging Face, accept its conditions on its page, make a token (Settings › Access tokens, read) and save it once in your EsaSim profile (**Profile › Keys**). Every Text to image block then uses it when you run a flow; a token pasted in a block (**A key for this block only**) comes first. With a token, downloads also get Hugging Face's higher rate limits.
 
 ## How to run it
 
@@ -66,10 +66,11 @@ The model is downloaded from Hugging Face the first time, only the parts the pip
 - **Images at once**: several images per pass of the model (large GPUs); the images are the same as one at a time.
 - **Variations** (one per line): added to the prompt in turn, to explore styles as well as seeds.
 - **Model** and **Accelerator**: as above. **Steps**, **Guidance**, **Width** and **Height**: 0 keeps the model's own.
+- **Hugging Face token**: empty uses the token in the profile of whoever runs the flow.
 
 ## What you get
 
-- **Images**: `image_01_seed1.png` … (more digits past 99 images) in Results, shown live in the view and then as a gallery (click one to enlarge it). The live gallery keeps the latest 200 while the run goes on; every image is in Results.
+- **Images**: `image_01_seed1.png` … (more digits past 99 images) in Results, shown in the view's grid as they are made. A click opens an image full size on top of the grid: the arrows (or the arrow keys, or a swipe) go through all of them, × (or Esc) comes back. The grid keeps the latest 200 while the run goes on; every image is in Results.
 - **Images table**: for each image its seed, prompt, variation, steps, guidance, size, time, model, licence and device.
 - **Summary**: one row per run (model, parameters, steps, size, device, images at once, seconds per image, loading time, licence); flow 3 joins those of four models into a chart.
 - **generation.json**: the model, its licence, the settings and the total time, to make the same images again.
@@ -97,7 +98,7 @@ An [EsaSim](https://esacode.com/) project of the workspace Gianluca De Novi's wo
 
 ### Blueprints in this repository
 
-- [1 · One prompt, any number of images](blueprints/1-one-prompt-any-number-of-images.json) · 5 blocks · version 2
+- [1 · One prompt, any number of images](blueprints/1-one-prompt-any-number-of-images.json) · 5 blocks · version 3
 - [2 · One prompt, ten styles](blueprints/2-one-prompt-ten-styles.json) · 4 blocks
 - [3 · Small to large: four models](blueprints/3-small-to-large-four-models.json) · 12 blocks
 
