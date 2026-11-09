@@ -1,0 +1,119 @@
+{
+    "esasim": {
+        "kind": "blueprint",
+        "flow_id": 21
+    },
+    "name": "2 · One prompt, ten styles",
+    "description": "The same scene in ten styles (sunrise, night, dust storm, watercolour, pencil sketch…), two seeds each: Variations added to the prompt in turn.",
+    "published_version": 0,
+    "updated": "2026-11-09 02:04:52",
+    "graph": {
+        "nodes": [
+            {
+                "id": "gen",
+                "type": "text-to-image",
+                "x": 0,
+                "y": 140,
+                "params": {
+                    "prompt": "A small six-wheeled rover exploring a red canyon on Mars, distant mesas, highly detailed",
+                    "count": 20,
+                    "model": "auto (Vega on an NVIDIA GPU, Vega RT on a CPU)",
+                    "model_id": "",
+                    "negative": "blurry, low quality, distorted, deformed, extra wheels, text, watermark, logo",
+                    "variations": "at sunrise, long shadows, cinematic light, photorealistic\nat night under the Milky Way, starlight, photorealistic\nin a swirling dust storm, dramatic, photorealistic\nseen from a high orbit, satellite photograph\nclose-up of the wheels in fine red sand, macro photograph\nas a soft watercolour painting\nas a detailed pencil sketch on paper\nas a retro 1960s science-fiction illustration\nas a low-poly 3D render, pastel colours\nas a vintage photograph, film grain, faded colours",
+                    "seed": 1,
+                    "steps": 0,
+                    "guidance": 0,
+                    "width": 0,
+                    "height": 0,
+                    "accelerator": "auto",
+                    "format": "png",
+                    "token": ""
+                },
+                "title": "Text to image: ten styles"
+            },
+            {
+                "id": "live",
+                "type": "telemetry",
+                "x": 420,
+                "y": 0,
+                "params": {
+                    "interval": 1,
+                    "channels": "image, generate, download",
+                    "keep": 200
+                },
+                "title": "Live pictures"
+            },
+            {
+                "id": "gallery",
+                "type": "image-view",
+                "x": 840,
+                "y": 0,
+                "params": {
+                    "size": "medium"
+                },
+                "title": "Ten styles, two seeds each"
+            },
+            {
+                "id": "table",
+                "type": "table-view",
+                "x": 840,
+                "y": 320,
+                "params": {
+                    "rows": 50
+                },
+                "title": "Style, seed and time of each image"
+            }
+        ],
+        "edges": [
+            {
+                "id": "gen.telemetry>live.from",
+                "from": {
+                    "node": "gen",
+                    "port": "telemetry"
+                },
+                "to": {
+                    "node": "live",
+                    "port": "from"
+                }
+            },
+            {
+                "id": "live.stream>gallery.images",
+                "from": {
+                    "node": "live",
+                    "port": "stream"
+                },
+                "to": {
+                    "node": "gallery",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "gen.images>gallery.images",
+                "from": {
+                    "node": "gen",
+                    "port": "images"
+                },
+                "to": {
+                    "node": "gallery",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "gen.table>table.data",
+                "from": {
+                    "node": "gen",
+                    "port": "table"
+                },
+                "to": {
+                    "node": "table",
+                    "port": "data"
+                }
+            }
+        ],
+        "notes": [],
+        "dash": {
+            "items": []
+        }
+    }
+}

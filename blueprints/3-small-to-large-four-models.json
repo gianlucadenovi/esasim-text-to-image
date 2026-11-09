@@ -1,0 +1,356 @@
+{
+    "esasim": {
+        "kind": "blueprint",
+        "flow_id": 22
+    },
+    "name": "3 · Small to large: four models",
+    "description": "The same prompt and seeds on four models from 0.7B to 3.5B parameters (Vega RT, Vega, SSD-1B, SDXL 1.0): their images side by side, and the time each takes.",
+    "published_version": 0,
+    "updated": "2026-11-09 02:11:08",
+    "graph": {
+        "nodes": [
+            {
+                "id": "rt",
+                "type": "text-to-image",
+                "x": 0,
+                "y": 0,
+                "params": {
+                    "prompt": "A small six-wheeled rover exploring a red canyon on Mars at sunrise, long shadows, fine dust in the air, distant mesas, cinematic light, highly detailed, photorealistic",
+                    "count": 4,
+                    "model": "Vega RT · 0.7B · 4 steps (fastest, any machine)",
+                    "seed": 1,
+                    "accelerator": "auto",
+                    "format": "png",
+                    "token": ""
+                },
+                "title": "Vega RT · 0.7B · 4 steps"
+            },
+            {
+                "id": "vega",
+                "type": "text-to-image",
+                "x": 0,
+                "y": 220,
+                "params": {
+                    "prompt": "A small six-wheeled rover exploring a red canyon on Mars at sunrise, long shadows, fine dust in the air, distant mesas, cinematic light, highly detailed, photorealistic",
+                    "count": 4,
+                    "model": "Vega · 0.7B · 25 steps (GPU 8 GB)",
+                    "seed": 1,
+                    "accelerator": "auto",
+                    "format": "png",
+                    "token": ""
+                },
+                "title": "Vega · 0.7B · 25 steps"
+            },
+            {
+                "id": "ssd",
+                "type": "text-to-image",
+                "x": 0,
+                "y": 440,
+                "params": {
+                    "prompt": "A small six-wheeled rover exploring a red canyon on Mars at sunrise, long shadows, fine dust in the air, distant mesas, cinematic light, highly detailed, photorealistic",
+                    "count": 4,
+                    "model": "SSD-1B · 1.3B · 25 steps (GPU 8 GB)",
+                    "seed": 1,
+                    "accelerator": "auto",
+                    "format": "png",
+                    "token": ""
+                },
+                "title": "SSD-1B · 1.3B · 25 steps"
+            },
+            {
+                "id": "sdxl",
+                "type": "text-to-image",
+                "x": 0,
+                "y": 660,
+                "params": {
+                    "prompt": "A small six-wheeled rover exploring a red canyon on Mars at sunrise, long shadows, fine dust in the air, distant mesas, cinematic light, highly detailed, photorealistic",
+                    "count": 4,
+                    "model": "SDXL 1.0 · 3.5B · 30 steps (GPU 12 GB)",
+                    "seed": 1,
+                    "accelerator": "auto",
+                    "format": "png",
+                    "token": ""
+                },
+                "title": "SDXL 1.0 · 3.5B · 30 steps"
+            },
+            {
+                "id": "live",
+                "type": "telemetry",
+                "x": 420,
+                "y": 300,
+                "params": {
+                    "interval": 1,
+                    "channels": "image, generate, download",
+                    "keep": 200
+                },
+                "title": "Live pictures"
+            },
+            {
+                "id": "now",
+                "type": "image-view",
+                "x": 840,
+                "y": -220,
+                "params": {
+                    "size": "small"
+                },
+                "title": "Being made now"
+            },
+            {
+                "id": "g_rt",
+                "type": "image-view",
+                "x": 840,
+                "y": 0,
+                "params": {
+                    "size": "medium"
+                },
+                "title": "Vega RT (0.7B, 4 steps)"
+            },
+            {
+                "id": "g_vega",
+                "type": "image-view",
+                "x": 840,
+                "y": 220,
+                "params": {
+                    "size": "medium"
+                },
+                "title": "Vega (0.7B, 25 steps)"
+            },
+            {
+                "id": "g_ssd",
+                "type": "image-view",
+                "x": 840,
+                "y": 440,
+                "params": {
+                    "size": "medium"
+                },
+                "title": "SSD-1B (1.3B, 25 steps)"
+            },
+            {
+                "id": "g_sdxl",
+                "type": "image-view",
+                "x": 840,
+                "y": 660,
+                "params": {
+                    "size": "medium"
+                },
+                "title": "SDXL 1.0 (3.5B, 30 steps)"
+            },
+            {
+                "id": "speed",
+                "type": "chart",
+                "x": 1260,
+                "y": 100,
+                "params": {
+                    "kind": "bars",
+                    "x": "model",
+                    "y": "seconds_per_image",
+                    "title": "Seconds per image (after the first), by model"
+                },
+                "title": "Seconds per image, by model"
+            },
+            {
+                "id": "cmp",
+                "type": "table-view",
+                "x": 1260,
+                "y": 400,
+                "params": {
+                    "rows": 50
+                },
+                "title": "The four models compared"
+            }
+        ],
+        "edges": [
+            {
+                "id": "rt.telemetry>live.from",
+                "from": {
+                    "node": "rt",
+                    "port": "telemetry"
+                },
+                "to": {
+                    "node": "live",
+                    "port": "from"
+                }
+            },
+            {
+                "id": "vega.telemetry>live.from",
+                "from": {
+                    "node": "vega",
+                    "port": "telemetry"
+                },
+                "to": {
+                    "node": "live",
+                    "port": "from"
+                }
+            },
+            {
+                "id": "ssd.telemetry>live.from",
+                "from": {
+                    "node": "ssd",
+                    "port": "telemetry"
+                },
+                "to": {
+                    "node": "live",
+                    "port": "from"
+                }
+            },
+            {
+                "id": "sdxl.telemetry>live.from",
+                "from": {
+                    "node": "sdxl",
+                    "port": "telemetry"
+                },
+                "to": {
+                    "node": "live",
+                    "port": "from"
+                }
+            },
+            {
+                "id": "live.stream>now.images",
+                "from": {
+                    "node": "live",
+                    "port": "stream"
+                },
+                "to": {
+                    "node": "now",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "rt.images>g_rt.images",
+                "from": {
+                    "node": "rt",
+                    "port": "images"
+                },
+                "to": {
+                    "node": "g_rt",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "vega.images>g_vega.images",
+                "from": {
+                    "node": "vega",
+                    "port": "images"
+                },
+                "to": {
+                    "node": "g_vega",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "ssd.images>g_ssd.images",
+                "from": {
+                    "node": "ssd",
+                    "port": "images"
+                },
+                "to": {
+                    "node": "g_ssd",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "sdxl.images>g_sdxl.images",
+                "from": {
+                    "node": "sdxl",
+                    "port": "images"
+                },
+                "to": {
+                    "node": "g_sdxl",
+                    "port": "images"
+                }
+            },
+            {
+                "id": "rt.summary>speed.data",
+                "from": {
+                    "node": "rt",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "speed",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "vega.summary>speed.data",
+                "from": {
+                    "node": "vega",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "speed",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "ssd.summary>speed.data",
+                "from": {
+                    "node": "ssd",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "speed",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "sdxl.summary>speed.data",
+                "from": {
+                    "node": "sdxl",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "speed",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "rt.summary>cmp.data",
+                "from": {
+                    "node": "rt",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "cmp",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "vega.summary>cmp.data",
+                "from": {
+                    "node": "vega",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "cmp",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "ssd.summary>cmp.data",
+                "from": {
+                    "node": "ssd",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "cmp",
+                    "port": "data"
+                }
+            },
+            {
+                "id": "sdxl.summary>cmp.data",
+                "from": {
+                    "node": "sdxl",
+                    "port": "summary"
+                },
+                "to": {
+                    "node": "cmp",
+                    "port": "data"
+                }
+            }
+        ],
+        "notes": [],
+        "dash": {
+            "items": []
+        }
+    }
+}
