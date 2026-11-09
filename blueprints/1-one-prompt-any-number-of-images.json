@@ -5,8 +5,8 @@
     },
     "name": "1 · One prompt, any number of images",
     "description": "Segmind Vega, downloaded once onto the machine, turns one prompt into 20 images (seeds 1 to 20), each shown live as it is made.",
-    "published_version": 3,
-    "updated": "2026-11-09 06:26:09",
+    "published_version": 4,
+    "updated": "2026-11-09 07:18:42",
     "graph": {
         "nodes": [
             {
@@ -15,7 +15,7 @@
                 "x": 0,
                 "y": 140,
                 "params": {
-                    "prompt": "A femail cyborg, very realistic and sexy. ",
+                    "prompt": "Crosscarts with rocket engines running in the desert",
                     "count": 20,
                     "model": "auto (Vega on an NVIDIA GPU, Vega RT on a CPU)",
                     "model_id": "",
