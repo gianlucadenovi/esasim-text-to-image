@@ -6,7 +6,7 @@
     "name": "1 · One prompt, any number of images",
     "description": "Segmind Vega, downloaded once onto the machine, turns one prompt into 20 images (seeds 1 to 20), each shown live as it is made.",
     "published_version": 6,
-    "updated": "2026-11-09 16:29:39",
+    "updated": "2026-11-09 20:38:42",
     "graph": {
         "nodes": [
             {
