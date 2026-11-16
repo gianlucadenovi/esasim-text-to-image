@@ -7,6 +7,8 @@
     "name": "Text to image",
     "description": "Open text-to-image models from Hugging Face, small to large, turn one prompt into any number of images on your own machine (NVIDIA GPU, Tenstorrent card or CPU), each shown live as it is made.",
     "type": "generative-ai",
+    "cover": "upload",
+    "cover_file": "assets/cover.jpg",
     "readme": "README.md",
     "blueprints": [
         {

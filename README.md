@@ -1,3 +1,7 @@
+<!-- esasim: cover -->
+![Text to image](assets/cover.jpg)
+<!-- /esasim: cover -->
+
 <div align="center">
 
 <!-- Banner: upload a picture named banner.png under Data › Readme pictures (one of the generated images works well), then: ![Text to image](pictures/banner.png) -->
